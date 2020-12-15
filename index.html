@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <style>
+            .container
+            {
+                padding: 1rem;
+                
+                width: 500px;
+                display: block;
+                margin: 5rem auto;
+                background-color: #ccc;
+            }
+
+            #output
+            {
+                background-color: #fff;
+                padding: 1rem;
+                display: flex;
+            }
+            #ans
+            {
+                text-align: right;
+                flex:1;
+                min-height: 20px;
+            }
+            #buttons
+            {
+              
+                overflow: auto;
+            }
+
+            #buttons li
+            {
+                list-style-type: none;
+                width: 23%;
+                line-height: 50px;
+                float: left;
+                border: 1px solid #ddd;
+                height: 50px;
+                text-align: center;
+                padding: 1rem 0;
+                vertical-align: middle;
+                font-weight: bold;
+                
+            }
+
+            #buttons li:hover
+            {
+                cursor: pointer;
+                background-color: #ddd;
+            }
+        </style>
+    </head>
+
+    <body>
+
+
+        <section class="container">
+        <div id="output">
+            <button id="clear">Clear</button>
+            <p id="ans"></p>
+        </div>
+
+        <ul id="buttons">
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>+</li>
+
+            <li>4</li>
+            <li>5</li>
+            <li>6</li>
+            <li>-</li>
+
+            <li>7</li>
+            <li>8</li>
+            <li>9</li>
+            <li>/</li>
+
+            <li>.</li>
+            <li>0</li>
+            <li>=</li>
+            <li>*</li>
+
+        </ul>
+    </section>
+
+        <!--
+
+            [      ]
+            
+            1 2 3 +
+            4 5 6 -
+            7 8 9 /
+            . 0 = *
+            
+        -->
+
+        <script>
+
+window.onload = function(){
+
+
+            var buttons = document.getElementById("buttons");
+
+            var ans = document.getElementById("ans");
+            var clear = document.getElementById("clear");
+
+            
+            clear.addEventListener('click', function(e){
+                ans.innerHTML = '';
+            });
+
+            buttons.addEventListener('click', function(e){
+                if(e.target.nodeName === "LI")
+                {
+                    var result = e.target.innerHTML;
+                    if(result === '=')
+                    {
+                        try
+                        {
+                        ans.innerHTML = eval(ans.innerHTML);
+                        }
+                        catch(e)
+                        {
+                            ans.innerHTML = e.message;
+                        }
+                    }
+
+                    else
+                    {
+                        
+                        
+                    ans.innerHTML += result;
+
+                    }
+               
+                }
+                
+            });
+                        
+};
+        </script>
+    </body>
+</html>
